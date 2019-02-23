@@ -45,10 +45,13 @@ public class Main {
         }
 
         // Print overview information
-        System.out.printf("Evaluating against %s%n", truthPath.getFileName());
-        System.out.printf("Max Kendall tau-b (applicable on single ranked lists): %.4f%n%n",
-                Helper.maxKendall(truth.getTiedRankedList() ? truth.tiedRankedList : truth.valueList.toRankedList())
-        );
+        System.out.printf("Evaluating against %s.%n", truthPath.getFileName());
+        if (truth.isTiedRankedList() || truth.isRankedList() || truth.isValueList()) {
+            System.out.printf("Max Kendall tau-b (applicable on single ranked lists): %.4f%n",
+                    Helper.maxKendall(truth.getTiedRankedList() ? truth.tiedRankedList : truth.valueList.toRankedList())
+            );
+        }
+        System.out.println();
 
         // Calculate max name for printing formats
         final int maximumLength = fileList.stream()
