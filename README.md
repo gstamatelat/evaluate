@@ -32,7 +32,8 @@ bear 0.3
 ```
 # single-ranks
 dog
-bear cat
+bear
+cat
 ```
 
 ### Partition
