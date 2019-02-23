@@ -1,5 +1,6 @@
 package gr.james.evaluate.algorithms;
 
+import gr.james.evaluate.ds.Partition;
 import gr.james.evaluate.ds.Result;
 import gr.james.evaluate.ds.ValueList;
 
@@ -73,5 +74,10 @@ public final class Pearson {
         varB = Math.sqrt(varB);
 
         return cov / (varA * varB);
+    }
+
+    public static <T> double pearson(Partition<T> a, Partition<T> b) {
+        // TODO
+        return 0;
     }
 }

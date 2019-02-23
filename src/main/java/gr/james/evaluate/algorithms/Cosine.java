@@ -1,5 +1,6 @@
 package gr.james.evaluate.algorithms;
 
+import gr.james.evaluate.ds.Partition;
 import gr.james.evaluate.ds.Result;
 import gr.james.evaluate.ds.ValueList;
 
@@ -59,5 +60,10 @@ public final class Cosine {
         }
 
         return numerator / (Math.sqrt(denominatorA) * Math.sqrt(denominatorB));
+    }
+
+    public static <T> double cosine(Partition<T> a, Partition<T> b) {
+        // TODO
+        return 0;
     }
 }
