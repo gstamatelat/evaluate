@@ -131,6 +131,11 @@ public final class Partition<T> {
         return Collections.unmodifiableSet(this.map.get(x));
     }
 
+    /**
+     * Returns a set of sets representing the groups in this partition.
+     *
+     * @return a set of sets representing the groups in this partition
+     */
     public Set<Set<T>> groups() {
         return new AbstractSet<Set<T>>() {
             @Override
