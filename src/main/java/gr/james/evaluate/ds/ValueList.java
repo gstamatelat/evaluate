@@ -102,7 +102,7 @@ public final class ValueList<T> {
      *
      * @return a {@link TiedRankedList} from this value list
      */
-    public TiedRankedList<T> toRankedList() {
+    public TiedRankedList<T> toTiedRankedList() {
         final TreeMap<Double, Set<T>> treeMap = new TreeMap<>();
         for (Map.Entry<T, Double> e : map.entrySet()) {
             if (!treeMap.containsKey(e.getValue())) {
