@@ -5,6 +5,7 @@ import gr.james.evaluate.io.TokenReader;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Immutable data structure that represents a partition of unique elements.
@@ -128,5 +129,19 @@ public final class Partition<T> {
             throw new IllegalArgumentException(String.format("Element is not in this partition: %s", x));
         }
         return Collections.unmodifiableSet(this.map.get(x));
+    }
+
+    /**
+     * Returns a string representation of the contents of this data structure.
+     *
+     * @return a string representation of the contents of this data structure
+     */
+    @Override
+    public String toString() {
+        return String.format("Partition[%d] {%n%s%n}", elements().size(),
+                this.groups.stream().map(ts -> String.format("  %s",
+                        ts.stream().map(Object::toString).collect(Collectors.joining(" "))
+                )).collect(Collectors.joining(System.lineSeparator()))
+        );
     }
 }
