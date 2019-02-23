@@ -9,7 +9,13 @@ import java.util.Objects;
 /**
  * Immutable union for all data structures.
  * <p>
- * A {@code Result} can hold one {@link RankedList} or one {@link ValueList}.
+ * A {@code Result} can hold one of the following data structures:
+ * <ul>
+ * <li>{@link RankedList}</li>
+ * <li>{@link ValueList}</li>
+ * <li>{@link SingleRankedList}</li>
+ * <li>{@link Partition}</li>
+ * </ul>
  */
 public final class Result<T> {
     /**
@@ -25,6 +31,18 @@ public final class Result<T> {
     public final ValueList<T> valueList;
 
     /**
+     * The {@link SingleRankedList} contained within this {@link Result} or {@code null} if this {@code Result} does not
+     * contain a {@code SingleRankedList}.
+     */
+    public final SingleRankedList<T> singleRankedList;
+
+    /**
+     * The {@link Partition} contained within this {@link Result} or {@code null} if this {@code Result} does not
+     * contain a {@code Partition}.
+     */
+    public final Partition<T> partition;
+
+    /**
      * Construct a new {@link Result} from the given {@link RankedList}.
      *
      * @param rankedList the {@link RankedList} to be contained within this {@code Result}
@@ -33,6 +51,8 @@ public final class Result<T> {
     public Result(RankedList<T> rankedList) {
         this.rankedList = Objects.requireNonNull(rankedList);
         this.valueList = null;
+        this.singleRankedList = null;
+        this.partition = null;
     }
 
     /**
@@ -44,6 +64,34 @@ public final class Result<T> {
     public Result(ValueList<T> valueList) {
         this.rankedList = null;
         this.valueList = Objects.requireNonNull(valueList);
+        this.singleRankedList = null;
+        this.partition = null;
+    }
+
+    /**
+     * Construct a new {@link Result} from the given {@link SingleRankedList}.
+     *
+     * @param singleRankedList the {@link SingleRankedList} to be contained within this {@code Result}
+     * @throws NullPointerException if {@code singleRankedList} is {@code null}
+     */
+    public Result(SingleRankedList<T> singleRankedList) {
+        this.rankedList = null;
+        this.valueList = null;
+        this.singleRankedList = Objects.requireNonNull(singleRankedList);
+        this.partition = null;
+    }
+
+    /**
+     * Construct a new {@link Result} from the given {@link Partition}.
+     *
+     * @param partition the {@link Partition} to be contained within this {@code Result}
+     * @throws NullPointerException if {@code partition} is {@code null}
+     */
+    public Result(Partition<T> partition) {
+        this.rankedList = null;
+        this.valueList = null;
+        this.singleRankedList = null;
+        this.partition = Objects.requireNonNull(partition);
     }
 
     /**
@@ -71,12 +119,17 @@ public final class Result<T> {
         if (hash == null) {
             throw new IllegalArgumentException("No hash found on file");
         }
-        if (hash.equals("values")) {
-            return new Result<>(ValueList.fromPath(p));
-        } else if (hash.equals("ranks")) {
-            return new Result<>(RankedList.fromPath(p));
-        } else {
-            throw new IllegalArgumentException(String.format("Not a valid hash: %s", hash));
+        switch (hash) {
+            case "values":
+                return new Result<>(ValueList.fromPath(p));
+            case "ranks":
+                return new Result<>(RankedList.fromPath(p));
+            case "single-ranks":
+                return new Result<>(SingleRankedList.fromPath(p));
+            case "partition":
+                return new Result<>(Partition.fromPath(p));
+            default:
+                throw new IllegalArgumentException(String.format("Not a valid hash: %s", hash));
         }
     }
 
