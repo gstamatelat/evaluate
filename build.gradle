@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+mainClassName = 'gr.james.evaluate.Main'
+
+sourceCompatibility = 1.8
+
+version = 0.1
+
+repositories {
+    jcenter()
+}
+
+build {
+    dependsOn(javadoc)
+}
+
+applicationDistribution.from("README.md") {
+    into "doc"
+}
+
+wrapper {
+    gradleVersion = '4.9'
+}

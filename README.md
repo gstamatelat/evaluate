@@ -1,0 +1,28 @@
+# Evaluate
+
+## Usage
+
+```
+./evaluate truth.txt data1.txt data2.txt ...
+```
+
+Each file can be one of two formats: rank list or value map. The script will
+determine the format based on the hash value in the first line of the file,
+which may be **ranks** or **values** respectively.
+
+### Rank List
+
+```
+# ranks
+dog
+bear cat
+```
+
+### Value Map
+
+```
+# values
+cat 0.6
+dog 0.1
+bear 0.3
+```
