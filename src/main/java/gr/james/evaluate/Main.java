@@ -2,6 +2,7 @@ package gr.james.evaluate;
 
 import gr.james.evaluate.algorithms.*;
 import gr.james.evaluate.ds.Result;
+import gr.james.evaluate.ds.TiedRankedList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -46,9 +47,11 @@ public class Main {
 
         // Print overview information
         System.out.printf("Evaluating against %s.%n", truthPath.getFileName());
-        if (truth.isTiedRankedList() || truth.isRankedList() || truth.isValueList()) {
-            System.out.printf("Max Kendall tau-b (applicable on single ranked lists): %.4f%n",
-                    Helper.maxKendall(truth.getTiedRankedList() ? truth.tiedRankedList : truth.valueList.toRankedList())
+        if (truth.tryGetTiedRankedList() != null) {
+            final TiedRankedList<String> internalRanks = truth.tryGetTiedRankedList();
+            assert internalRanks != null;
+            System.out.printf("Max Kendall tau-b (applicable on ranked lists): %.4f%n",
+                    Helper.maxKendall(internalRanks)
             );
         }
         System.out.println();

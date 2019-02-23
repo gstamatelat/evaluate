@@ -172,6 +172,14 @@ public final class Result<T> {
     /**
      * Returns a {@link TiedRankedList} representing this {@link Result} if the object contained can be cast to
      * {@code TiedRankedList}, otherwise returns {@code null}.
+     * <p>
+     * Specifically, this method will return a {@code TiedRankedList} if the content of this {@code Result} is one of
+     * the following:
+     * <ul>
+     * <li>{@link RankedList}</li>
+     * <li>{@link TiedRankedList}</li>
+     * <li>{@link ValueList}</li>
+     * </ul>
      *
      * @return a {@link TiedRankedList} representing this {@link Result} or {@code null} if the data structure in this
      * {@code Result} cannot be cast to {@code TiedRankedList}.

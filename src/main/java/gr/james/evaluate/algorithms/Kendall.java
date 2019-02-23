@@ -32,10 +32,9 @@ public final class Kendall {
         if (!b.isValueList() && !b.isTiedRankedList() && !b.isRankedList()) {
             return null;
         }
-        final TiedRankedList<T> aList = a.isValueList() ? a.valueList.toTiedRankedList() :
-                (a.isRankedList() ? a.rankedList.toTiedRankedList() : a.tiedRankedList);
-        final TiedRankedList<T> bList = b.isValueList() ? b.valueList.toTiedRankedList() :
-                (b.isRankedList() ? b.rankedList.toTiedRankedList() : b.tiedRankedList);
+        final TiedRankedList<T> aList = a.tryGetTiedRankedList();
+        final TiedRankedList<T> bList = b.tryGetTiedRankedList();
+        assert aList != null && bList != null;
         return kendall(aList, bList);
     }
 
