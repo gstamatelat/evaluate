@@ -26,16 +26,16 @@ public final class Kendall {
      *                              the wrapped methods above
      */
     public static <T> Double kendall(Result<T> a, Result<T> b) {
-        if (!a.isValueList() && !a.getTiedRankedList() && !a.isSingleRankList()) {
+        if (!a.isValueList() && !a.getTiedRankedList() && !a.isRankedList()) {
             return null;
         }
-        if (!b.isValueList() && !b.getTiedRankedList() && !b.isSingleRankList()) {
+        if (!b.isValueList() && !b.getTiedRankedList() && !b.isRankedList()) {
             return null;
         }
         final TiedRankedList<T> aList = a.isValueList() ? a.valueList.toRankedList() :
-                (a.isSingleRankList() ? a.rankedList.torankedList() : a.tiedRankedList);
+                (a.isRankedList() ? a.rankedList.torankedList() : a.tiedRankedList);
         final TiedRankedList<T> bList = b.isValueList() ? b.valueList.toRankedList() :
-                (b.isSingleRankList() ? b.rankedList.torankedList() : b.tiedRankedList);
+                (b.isRankedList() ? b.rankedList.torankedList() : b.tiedRankedList);
         return kendall(aList, bList);
     }
 

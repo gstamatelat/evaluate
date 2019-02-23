@@ -156,8 +156,17 @@ public final class Result<T> {
      *
      * @return {@code true} if this {@link Result} represents a {@link RankedList}, otherwise {@code false}
      */
-    public boolean isSingleRankList() {
+    public boolean isRankedList() {
         return this.rankedList != null;
+    }
+
+    /**
+     * Returns {@code true} if this {@link Result} represents a {@link TiedRankedList}, otherwise {@code false}.
+     *
+     * @return {@code true} if this {@link Result} represents a {@link TiedRankedList}, otherwise {@code false}
+     */
+    public boolean isTiedRankedList() {
+        return this.tiedRankedList != null;
     }
 
     /**
