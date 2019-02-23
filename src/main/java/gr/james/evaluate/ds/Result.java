@@ -134,15 +134,6 @@ public final class Result<T> {
     }
 
     /**
-     * Returns {@code true} if this {@link Result} represents a {@link TiedRankedList}, otherwise {@code false}.
-     *
-     * @return {@code true} if this {@link Result} represents a {@link TiedRankedList}, otherwise {@code false}
-     */
-    public boolean getTiedRankedList() {
-        return this.tiedRankedList != null;
-    }
-
-    /**
      * Returns {@code true} if this {@link Result} represents a {@link ValueList}, otherwise {@code false}.
      *
      * @return {@code true} if this {@link Result} represents a {@link ValueList}, otherwise {@code false}
