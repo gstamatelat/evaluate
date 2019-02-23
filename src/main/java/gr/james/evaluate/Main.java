@@ -28,26 +28,27 @@ public class Main {
             throw new IllegalArgumentException("Must have at least 2 arguments, the truth and one evaluation result");
         }
 
-        // Print the arguments
-        for (String arg : args) {
-            System.out.printf("%s:%n%s%n%n", arg, Result.fromPath(Paths.get(arg)));
-        }
-
         // Load truth
         final Path truthPath = Paths.get(args[0]);
         final Result<String> truth = Result.fromPath(truthPath);
-
-        // Print overview information
-        System.out.printf("Evaluating against %s%n", truthPath.getFileName());
-        System.out.printf("Max Kendall tau-b (if applicable): %.4f%n%n",
-                Kendall.maxKendall(truth.isRankedList() ? truth.rankedList : truth.valueList.toRankedList())
-        );
 
         // Load other files
         final List<Path> fileList = new ArrayList<>();
         for (int i = 1; i < args.length; i++) {
             fileList.add(Paths.get(args[i]));
         }
+
+        // Print the arguments
+        System.out.printf("%s (truth):%n%s%n%n", truthPath.getFileName(), Result.fromPath(truthPath));
+        for (Path f : fileList) {
+            System.out.printf("%s:%n%s%n%n", f.getFileName(), Result.fromPath(f));
+        }
+
+        // Print overview information
+        System.out.printf("Evaluating against %s%n", truthPath.getFileName());
+        System.out.printf("Max Kendall tau-b (applicable on single ranked lists): %.4f%n%n",
+                Kendall.maxKendall(truth.isRankedList() ? truth.rankedList : truth.valueList.toRankedList())
+        );
 
         // Calculate max name for printing formats
         final int maximumLength = fileList.stream()
