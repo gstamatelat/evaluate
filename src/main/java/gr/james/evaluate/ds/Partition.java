@@ -131,6 +131,32 @@ public final class Partition<T> {
         return Collections.unmodifiableSet(this.map.get(x));
     }
 
+    public Set<Set<T>> groups() {
+        return new AbstractSet<Set<T>>() {
+            @Override
+            public Iterator<Set<T>> iterator() {
+                return new Iterator<Set<T>>() {
+                    final Iterator<Set<T>> it = Partition.this.groups.iterator();
+
+                    @Override
+                    public boolean hasNext() {
+                        return it.hasNext();
+                    }
+
+                    @Override
+                    public Set<T> next() {
+                        return Collections.unmodifiableSet(it.next());
+                    }
+                };
+            }
+
+            @Override
+            public int size() {
+                return Partition.this.groups.size();
+            }
+        };
+    }
+
     /**
      * Returns a string representation of the contents of this data structure.
      *
