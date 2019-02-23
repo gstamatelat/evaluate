@@ -1,0 +1,4 @@
+# single-ranks
+dog
+bear
+cat
