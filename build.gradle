@@ -24,3 +24,7 @@ applicationDistribution.from("README.md") {
 wrapper {
     gradleVersion = '4.9'
 }
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
