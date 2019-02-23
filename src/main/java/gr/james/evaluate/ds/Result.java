@@ -11,7 +11,7 @@ import java.util.Objects;
  * <p>
  * A {@code Result} can hold one of the following data structures:
  * <ul>
- * <li>{@link RankedList}</li>
+ * <li>{@link TiedRankedList}</li>
  * <li>{@link ValueList}</li>
  * <li>{@link SingleRankedList}</li>
  * <li>{@link Partition}</li>
@@ -19,10 +19,10 @@ import java.util.Objects;
  */
 public final class Result<T> {
     /**
-     * The {@link RankedList} contained within this {@link Result} or {@code null} if this {@code Result} does not
-     * contain a {@code RankedList}.
+     * The {@link TiedRankedList} contained within this {@link Result} or {@code null} if this {@code Result} does not
+     * contain a {@code TiedRankedList}.
      */
-    public final RankedList<T> rankedList;
+    public final TiedRankedList<T> tiedRankedList;
 
     /**
      * The {@link ValueList} contained within this {@link Result} or {@code null} if this {@code Result} does not
@@ -43,13 +43,13 @@ public final class Result<T> {
     public final Partition<T> partition;
 
     /**
-     * Construct a new {@link Result} from the given {@link RankedList}.
+     * Construct a new {@link Result} from the given {@link TiedRankedList}.
      *
-     * @param rankedList the {@link RankedList} to be contained within this {@code Result}
-     * @throws NullPointerException if {@code rankedList} is {@code null}
+     * @param tiedRankedList the {@link TiedRankedList} to be contained within this {@code Result}
+     * @throws NullPointerException if {@code tiedRankedList} is {@code null}
      */
-    public Result(RankedList<T> rankedList) {
-        this.rankedList = Objects.requireNonNull(rankedList);
+    public Result(TiedRankedList<T> tiedRankedList) {
+        this.tiedRankedList = Objects.requireNonNull(tiedRankedList);
         this.valueList = null;
         this.singleRankedList = null;
         this.partition = null;
@@ -62,7 +62,7 @@ public final class Result<T> {
      * @throws NullPointerException if {@code valueList} is {@code null}
      */
     public Result(ValueList<T> valueList) {
-        this.rankedList = null;
+        this.tiedRankedList = null;
         this.valueList = Objects.requireNonNull(valueList);
         this.singleRankedList = null;
         this.partition = null;
@@ -75,7 +75,7 @@ public final class Result<T> {
      * @throws NullPointerException if {@code singleRankedList} is {@code null}
      */
     public Result(SingleRankedList<T> singleRankedList) {
-        this.rankedList = null;
+        this.tiedRankedList = null;
         this.valueList = null;
         this.singleRankedList = Objects.requireNonNull(singleRankedList);
         this.partition = null;
@@ -88,7 +88,7 @@ public final class Result<T> {
      * @throws NullPointerException if {@code partition} is {@code null}
      */
     public Result(Partition<T> partition) {
-        this.rankedList = null;
+        this.tiedRankedList = null;
         this.valueList = null;
         this.singleRankedList = null;
         this.partition = Objects.requireNonNull(partition);
@@ -122,8 +122,8 @@ public final class Result<T> {
         switch (hash) {
             case "values":
                 return new Result<>(ValueList.fromPath(p));
-            case "ranks":
-                return new Result<>(RankedList.fromPath(p));
+            case "tie-ranks":
+                return new Result<>(TiedRankedList.fromPath(p));
             case "single-ranks":
                 return new Result<>(SingleRankedList.fromPath(p));
             case "partition":
@@ -134,12 +134,12 @@ public final class Result<T> {
     }
 
     /**
-     * Returns {@code true} if this {@link Result} represents a {@link RankedList}, otherwise {@code false}.
+     * Returns {@code true} if this {@link Result} represents a {@link TiedRankedList}, otherwise {@code false}.
      *
-     * @return {@code true} if this {@link Result} represents a {@link RankedList}, otherwise {@code false}
+     * @return {@code true} if this {@link Result} represents a {@link TiedRankedList}, otherwise {@code false}
      */
-    public boolean isRankedList() {
-        return this.rankedList != null;
+    public boolean getTiedRankedList() {
+        return this.tiedRankedList != null;
     }
 
     /**
@@ -176,8 +176,8 @@ public final class Result<T> {
      */
     @Override
     public String toString() {
-        if (this.rankedList != null) {
-            return this.rankedList.toString();
+        if (this.tiedRankedList != null) {
+            return this.tiedRankedList.toString();
         } else if (this.valueList != null) {
             return this.valueList.toString();
         } else if (this.singleRankedList != null) {

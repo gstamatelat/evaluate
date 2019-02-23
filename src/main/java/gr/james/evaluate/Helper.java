@@ -1,8 +1,8 @@
 package gr.james.evaluate;
 
 import gr.james.evaluate.algorithms.Kendall;
-import gr.james.evaluate.ds.RankedList;
 import gr.james.evaluate.ds.SingleRankedList;
+import gr.james.evaluate.ds.TiedRankedList;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -83,7 +83,7 @@ public final class Helper {
      * @return the maximum value of Kendall tau-b correlation of {@code x} with any other ranked list without ties
      * @throws NullPointerException if {@code x} is {@code null}
      */
-    public static <T> double maxKendall(RankedList<T> x) {
+    public static <T> double maxKendall(TiedRankedList<T> x) {
         final List<T> flattened = new ArrayList<>();
         for (Set<T> s : x) {
             flattened.addAll(s);

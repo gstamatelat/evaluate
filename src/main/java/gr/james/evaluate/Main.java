@@ -47,7 +47,7 @@ public class Main {
         // Print overview information
         System.out.printf("Evaluating against %s%n", truthPath.getFileName());
         System.out.printf("Max Kendall tau-b (applicable on single ranked lists): %.4f%n%n",
-                Helper.maxKendall(truth.isRankedList() ? truth.rankedList : truth.valueList.toRankedList())
+                Helper.maxKendall(truth.getTiedRankedList() ? truth.tiedRankedList : truth.valueList.toRankedList())
         );
 
         // Calculate max name for printing formats

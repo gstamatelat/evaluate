@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
  *
  * @param <T> the type of elements
  */
-public final class RankedList<T> implements Iterable<Set<T>> {
+public final class TiedRankedList<T> implements Iterable<Set<T>> {
     private final Map<T, Integer> indices;
     private final List<Set<T>> ranks;
 
-    private RankedList(List<? extends Collection<T>> ranks) {
+    private TiedRankedList(List<? extends Collection<T>> ranks) {
         this.indices = new HashMap<>();
         this.ranks = new ArrayList<>();
         for (int i = 0; i < ranks.size(); i++) {
@@ -40,34 +40,34 @@ public final class RankedList<T> implements Iterable<Set<T>> {
     }
 
     /**
-     * Returns a new {@link RankedList} from the given ranked list with possible ties.
+     * Returns a new {@link TiedRankedList} from the given ranked list with possible ties.
      * <p>
      * This method runs in linear time.
      *
      * @param ranks an ordered list of ranked elements with possible ties
      * @param <T>   the type of elements
-     * @return a new {@link RankedList} from {@code ranks}
+     * @return a new {@link TiedRankedList} from {@code ranks}
      * @throws NullPointerException     if {@code ranks} is {@code null}
      * @throws NullPointerException     if any element in {@code ranks} is {@code null}
      * @throws IllegalArgumentException if {@code ranks} contains duplicate elements
      * @throws IllegalArgumentException if {@code ranks} contains empty ranks
      */
-    public static <T> RankedList<T> fromRanks(List<? extends Collection<T>> ranks) {
-        return new RankedList<>(ranks);
+    public static <T> TiedRankedList<T> fromRanks(List<? extends Collection<T>> ranks) {
+        return new TiedRankedList<>(ranks);
     }
 
     /**
-     * Returns a new {@link RankedList} from the given {@link Path}.
+     * Returns a new {@link TiedRankedList} from the given {@link Path}.
      * <p>
      * This method runs in linear time.
      *
      * @param p the {@link Path} of the file to read from
-     * @return a new {@link RankedList} from {@code p}
+     * @return a new {@link TiedRankedList} from {@code p}
      * @throws NullPointerException     if {@code p} is {@code null}
      * @throws IOException              if some I/O exception occurs while reading the file
      * @throws IllegalArgumentException if {@code p} contains duplicate elements
      */
-    public static RankedList<String> fromPath(Path p) throws IOException {
+    public static TiedRankedList<String> fromPath(Path p) throws IOException {
         final List<Collection<String>> ranks = new ArrayList<>();
         try (final TokenReader reader = new TokenReader(p)) {
             reader.next();
@@ -173,15 +173,15 @@ public final class RankedList<T> implements Iterable<Set<T>> {
 
             @Override
             public boolean hasNext() {
-                return i < RankedList.this.ranks.size();
+                return i < TiedRankedList.this.ranks.size();
             }
 
             @Override
             public Set<T> next() {
-                if (RankedList.this.ranks.size() <= i) {
+                if (TiedRankedList.this.ranks.size() <= i) {
                     throw new NoSuchElementException();
                 }
-                return Collections.unmodifiableSet(RankedList.this.ranks.get(i++));
+                return Collections.unmodifiableSet(TiedRankedList.this.ranks.get(i++));
             }
         };
     }
@@ -193,7 +193,7 @@ public final class RankedList<T> implements Iterable<Set<T>> {
      */
     @Override
     public String toString() {
-        return String.format("RankedList[%d] {%n%s%n}", elementsCount(),
+        return String.format("TiedRankedList[%d] {%n%s%n}", elementsCount(),
                 this.ranks.stream().map(ts -> String.format("  %s",
                         ts.stream().map(Object::toString).collect(Collectors.joining(" "))
                 )).collect(Collectors.joining(System.lineSeparator()))

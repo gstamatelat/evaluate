@@ -1,7 +1,7 @@
 package gr.james.evaluate.algorithms;
 
-import gr.james.evaluate.ds.RankedList;
 import gr.james.evaluate.ds.Result;
+import gr.james.evaluate.ds.TiedRankedList;
 
 import java.util.Collection;
 
@@ -12,7 +12,7 @@ public final class Kendall {
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>
-     * <li>{@link #kendall(RankedList, RankedList)}</li>
+     * <li>{@link #kendall(TiedRankedList, TiedRankedList)}</li>
      * </ul>
      * <p>
      * Returns {@code null} if the type of the arguments is not compatible with the algorithm.
@@ -26,16 +26,16 @@ public final class Kendall {
      *                              the wrapped methods above
      */
     public static <T> Double kendall(Result<T> a, Result<T> b) {
-        if (!a.isValueList() && !a.isRankedList() && !a.isSingleRankList()) {
+        if (!a.isValueList() && !a.getTiedRankedList() && !a.isSingleRankList()) {
             return null;
         }
-        if (!b.isValueList() && !b.isRankedList() && !b.isSingleRankList()) {
+        if (!b.isValueList() && !b.getTiedRankedList() && !b.isSingleRankList()) {
             return null;
         }
-        final RankedList<T> aList = a.isValueList() ? a.valueList.toRankedList() :
-                (a.isSingleRankList() ? a.singleRankedList.torankedList() : a.rankedList);
-        final RankedList<T> bList = b.isValueList() ? b.valueList.toRankedList() :
-                (b.isSingleRankList() ? b.singleRankedList.torankedList() : b.rankedList);
+        final TiedRankedList<T> aList = a.isValueList() ? a.valueList.toRankedList() :
+                (a.isSingleRankList() ? a.singleRankedList.torankedList() : a.tiedRankedList);
+        final TiedRankedList<T> bList = b.isValueList() ? b.valueList.toRankedList() :
+                (b.isSingleRankList() ? b.singleRankedList.torankedList() : b.tiedRankedList);
         return kendall(aList, bList);
     }
 
@@ -54,7 +54,7 @@ public final class Kendall {
      * @throws NullPointerException     if {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if {@code a} and {@code b} do not contain exactly the same elements
      */
-    public static <T> double kendall(RankedList<T> a, RankedList<T> b) {
+    public static <T> double kendall(TiedRankedList<T> a, TiedRankedList<T> b) {
         if (!a.elements().equals(b.elements())) {
             throw new IllegalArgumentException("a and b must have the same elements");
         }

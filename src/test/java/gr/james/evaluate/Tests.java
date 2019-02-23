@@ -18,7 +18,7 @@ public class Tests {
     @Test
     public void fromPath() throws IOException, URISyntaxException {
         final List<String> files = Arrays.asList(
-                "/simple-ranks.txt",
+                "/simple-tied-ranks.txt",
                 "/simple-values.txt",
                 "/simple-single-ranks.txt",
                 "/simple-partition.txt"

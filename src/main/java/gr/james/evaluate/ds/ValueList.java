@@ -96,13 +96,13 @@ public final class ValueList<T> {
     }
 
     /**
-     * Returns a {@link RankedList} from this value list.
+     * Returns a {@link TiedRankedList} from this value list.
      * <p>
      * This method runs in linearithmic time.
      *
-     * @return a {@link RankedList} from this value list
+     * @return a {@link TiedRankedList} from this value list
      */
-    public RankedList<T> toRankedList() {
+    public TiedRankedList<T> toRankedList() {
         final TreeMap<Double, Set<T>> treeMap = new TreeMap<>();
         for (Map.Entry<T, Double> e : map.entrySet()) {
             if (!treeMap.containsKey(e.getValue())) {
@@ -111,7 +111,7 @@ public final class ValueList<T> {
             treeMap.get(e.getValue()).add(e.getKey());
         }
         final List<Set<T>> rankedList = new ArrayList<>(treeMap.values());
-        return RankedList.fromRanks(rankedList);
+        return TiedRankedList.fromRanks(rankedList);
     }
 
     /**
