@@ -88,6 +88,6 @@ public final class Helper {
         for (Set<T> s : x) {
             flattened.addAll(s);
         }
-        return Kendall.kendall(x, RankedList.fromRanks(flattened).torankedList());
+        return Kendall.kendall(x, RankedList.fromRanks(flattened).toTiedRankedList());
     }
 }

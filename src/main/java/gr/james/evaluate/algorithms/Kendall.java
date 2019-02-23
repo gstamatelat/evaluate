@@ -33,9 +33,9 @@ public final class Kendall {
             return null;
         }
         final TiedRankedList<T> aList = a.isValueList() ? a.valueList.toRankedList() :
-                (a.isRankedList() ? a.rankedList.torankedList() : a.tiedRankedList);
+                (a.isRankedList() ? a.rankedList.toTiedRankedList() : a.tiedRankedList);
         final TiedRankedList<T> bList = b.isValueList() ? b.valueList.toRankedList() :
-                (b.isRankedList() ? b.rankedList.torankedList() : b.tiedRankedList);
+                (b.isRankedList() ? b.rankedList.toTiedRankedList() : b.tiedRankedList);
         return kendall(aList, bList);
     }
 

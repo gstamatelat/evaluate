@@ -90,7 +90,7 @@ public final class RankedList<T> implements Iterable<T> {
      *
      * @return a {@link TiedRankedList} from this data structure
      */
-    public TiedRankedList<T> torankedList() {
+    public TiedRankedList<T> toTiedRankedList() {
         return TiedRankedList.fromRanks(Helper.flatten(ranks));
     }
 
