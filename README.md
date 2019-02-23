@@ -26,3 +26,19 @@ cat 0.6
 dog 0.1
 bear 0.3
 ```
+
+### Single Rank List
+
+```
+# single-ranks
+dog
+bear cat
+```
+
+### Partition
+
+```
+# partition
+dog
+bear cat
+```
