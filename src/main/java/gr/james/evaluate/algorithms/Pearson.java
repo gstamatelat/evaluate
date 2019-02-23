@@ -8,7 +8,8 @@ import gr.james.evaluate.ds.ValueList;
  */
 public final class Pearson {
     /**
-     * Convenience method that invokes {@link #pearson(ValueList, ValueList)} if both inputs are of type {@link ValueList}.
+     * Convenience method that invokes {@link #pearson(ValueList, ValueList)} if both inputs are of type
+     * {@link ValueList}.
      * <p>
      * Returns {@code null} if the type of the arguments is not compatible with the algorithm.
      *

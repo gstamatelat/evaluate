@@ -14,7 +14,8 @@ import java.util.Set;
  */
 public final class Kendall {
     /**
-     * Convenience method that invokes {@link #kendall(RankedList, RankedList)} if both inputs are of type {@link RankedList}.
+     * Convenience method that invokes {@link #kendall(RankedList, RankedList)} if both inputs are of type
+     * {@link RankedList}.
      * <p>
      * Returns {@code null} if the type of the arguments is not compatible with the algorithm.
      *
@@ -27,8 +28,16 @@ public final class Kendall {
      *                              {@link #kendall(RankedList, RankedList)}
      */
     public static <T> Double kendall(Result<T> a, Result<T> b) {
-        final RankedList<T> aList = a.isValueList() ? a.valueList.toRankedList() : a.rankedList;
-        final RankedList<T> bList = b.isValueList() ? b.valueList.toRankedList() : b.rankedList;
+        if (!a.isValueList() && !a.isRankedList() && !a.isSingleRankList()) {
+            return null;
+        }
+        if (!b.isValueList() && !b.isRankedList() && !b.isSingleRankList()) {
+            return null;
+        }
+        final RankedList<T> aList = a.isValueList() ? a.valueList.toRankedList() :
+                (a.isSingleRankList() ? a.singleRankedList.torankedList() : a.rankedList);
+        final RankedList<T> bList = b.isValueList() ? b.valueList.toRankedList() :
+                (b.isSingleRankList() ? b.singleRankedList.torankedList() : b.rankedList);
         return kendall(aList, bList);
     }
 
