@@ -152,6 +152,24 @@ public final class Result<T> {
     }
 
     /**
+     * Returns {@code true} if this {@link Result} represents a {@link SingleRankedList}, otherwise {@code false}.
+     *
+     * @return {@code true} if this {@link Result} represents a {@link SingleRankedList}, otherwise {@code false}
+     */
+    public boolean isSingleRankList() {
+        return this.singleRankedList != null;
+    }
+
+    /**
+     * Returns {@code true} if this {@link Result} represents a {@link Partition}, otherwise {@code false}.
+     *
+     * @return {@code true} if this {@link Result} represents a {@link Partition}, otherwise {@code false}
+     */
+    public boolean isPartition() {
+        return this.partition != null;
+    }
+
+    /**
      * Returns a string representation of the underlying data structure of this {@link Result}.
      *
      * @return a string representation of the underlying data structure of this {@link Result}
@@ -162,6 +180,10 @@ public final class Result<T> {
             return this.rankedList.toString();
         } else if (this.valueList != null) {
             return this.valueList.toString();
+        } else if (this.singleRankedList != null) {
+            return this.singleRankedList.toString();
+        } else if (this.partition != null) {
+            return this.partition.toString();
         } else {
             throw new RuntimeException("This must never happen");
         }
