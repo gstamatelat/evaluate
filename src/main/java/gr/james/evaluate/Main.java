@@ -56,6 +56,7 @@ public class Main {
         final String headerFormat = String.format("%%-%ds %%8s %%8s %%8s %%8s %%8s %%8s %%8s %%n", maximumLength);
 
         // Iterate other files and print correlations
+        // TODO: Print hyphen instead of null
         System.out.printf(headerFormat, "Name", "Kendall", "Pearson", "Cosine", "Jaccard", "MI", "SMC", "F1");
         for (Path p : fileList) {
             final Result<String> r = Result.fromPath(p);
