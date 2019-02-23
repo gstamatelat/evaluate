@@ -9,8 +9,11 @@ import gr.james.evaluate.ds.ValueList;
  */
 public final class Cosine {
     /**
-     * Convenience method that invokes {@link #cosine(ValueList, ValueList)} if both inputs are of type
-     * {@link ValueList}.
+     * Convenience method that automatically invokes one of these methods based on the type of the arguments:
+     * <ul>
+     * <li>{@link #cosine(ValueList, ValueList)}</li>
+     * <li>{@link #cosine(Partition, Partition)}</li>
+     * </ul>
      * <p>
      * Returns {@code null} if the type of the arguments is not compatible with the algorithm.
      *
@@ -20,11 +23,13 @@ public final class Cosine {
      * @return the Cosine similarity between {@code a} and {@code b}
      * @throws NullPointerException if {@code a} or {@code b} is {@code null}
      * @throws RuntimeException     if the arguments have some property that causes the algorithm to fail, specified in
-     *                              {@link #cosine(ValueList, ValueList)}
+     *                              the wrapped methods above
      */
     public static <T> Double cosine(Result<T> a, Result<T> b) {
         if (a.isValueList() && b.isValueList()) {
             return cosine(a.valueList, b.valueList);
+        } else if (a.isPartition() && b.isPartition()) {
+            return cosine(a.partition, b.partition);
         } else {
             return null;
         }

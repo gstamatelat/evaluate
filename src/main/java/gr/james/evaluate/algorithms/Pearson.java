@@ -9,8 +9,11 @@ import gr.james.evaluate.ds.ValueList;
  */
 public final class Pearson {
     /**
-     * Convenience method that invokes {@link #pearson(ValueList, ValueList)} if both inputs are of type
-     * {@link ValueList}.
+     * Convenience method that automatically invokes one of these methods based on the type of the arguments:
+     * <ul>
+     * <li>{@link #pearson(ValueList, ValueList)}</li>
+     * <li>{@link #pearson(Partition, Partition)}</li>
+     * </ul>
      * <p>
      * Returns {@code null} if the type of the arguments is not compatible with the algorithm.
      *
@@ -20,11 +23,13 @@ public final class Pearson {
      * @return the Pearson correlation coefficient between {@code a} and {@code b}
      * @throws NullPointerException if {@code a} or {@code b} is {@code null}
      * @throws RuntimeException     if the arguments have some property that causes the algorithm to fail, specified in
-     *                              {@link #pearson(ValueList, ValueList)}
+     *                              the wrapped methods above
      */
     public static <T> Double pearson(Result<T> a, Result<T> b) {
         if (a.isValueList() && b.isValueList()) {
             return pearson(a.valueList, b.valueList);
+        } else if (a.isPartition() && b.isPartition()) {
+            return pearson(a.partition, b.partition);
         } else {
             return null;
         }
