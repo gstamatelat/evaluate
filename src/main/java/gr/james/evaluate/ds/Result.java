@@ -170,6 +170,25 @@ public final class Result<T> {
     }
 
     /**
+     * Returns a {@link TiedRankedList} representing this {@link Result} if the object contained can be cast to
+     * {@code TiedRankedList}, otherwise returns {@code null}.
+     *
+     * @return a {@link TiedRankedList} representing this {@link Result} or {@code null} if the data structure in this
+     * {@code Result} cannot be cast to {@code TiedRankedList}.
+     */
+    public TiedRankedList<T> tryGetTiedRankedList() {
+        if (this.tiedRankedList != null) {
+            return this.tiedRankedList;
+        } else if (this.rankedList != null) {
+            return this.rankedList.toTiedRankedList();
+        } else if (this.valueList != null) {
+            return this.valueList.toTiedRankedList();
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Returns a string representation of the underlying data structure of this {@link Result}.
      *
      * @return a string representation of the underlying data structure of this {@link Result}
