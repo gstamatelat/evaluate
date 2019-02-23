@@ -75,6 +75,8 @@ public final class RankedList<T> implements Iterable<Set<T>> {
 
     /**
      * Returns a new {@link RankedList} from the given {@link Path}.
+     * <p>
+     * This method runs in linear time.
      *
      * @param p the {@link Path} of the file to read from
      * @return a new {@link RankedList} from {@code p}

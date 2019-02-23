@@ -52,6 +52,8 @@ public final class SingleRankedList<T> implements Iterable<T> {
 
     /**
      * Returns a new {@link SingleRankedList} from the given {@link Path}.
+     * <p>
+     * This method runs in linear time.
      *
      * @param p the {@link Path} of the file to read from
      * @return a new {@link SingleRankedList} from {@code p}

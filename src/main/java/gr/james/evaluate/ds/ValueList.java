@@ -50,6 +50,8 @@ public final class ValueList<T> {
 
     /**
      * Returns a new {@link ValueList} from the given {@link Path}.
+     * <p>
+     * This method runs in linear time.
      *
      * @param p the {@link Path} of the file to read from
      * @return a new {@link ValueList} from {@code p}
