@@ -1,6 +1,5 @@
 package gr.james.evaluate.ds;
 
-import gr.james.evaluate.Helper;
 import gr.james.evaluate.io.TokenReader;
 
 import java.io.IOException;
@@ -55,22 +54,6 @@ public final class RankedList<T> implements Iterable<Set<T>> {
      */
     public static <T> RankedList<T> fromRanks(List<? extends Collection<T>> ranks) {
         return new RankedList<>(ranks);
-    }
-
-    /**
-     * Returns a new {@link RankedList} from the given ranked list.
-     * <p>
-     * This method runs in linear time.
-     *
-     * @param ranks an ordered list of ranked elements
-     * @param <T>   the type of elements
-     * @return a new {@link RankedList} from {@code ranks}
-     * @throws NullPointerException     if {@code ranks} is {@code null}
-     * @throws NullPointerException     if any element in {@code ranks} is {@code null}
-     * @throws IllegalArgumentException if {@code ranks} contains duplicate elements
-     */
-    public static <T> RankedList<T> fromSingletonRanks(List<T> ranks) {
-        return new RankedList<>(Helper.flatten(ranks));
     }
 
     /**

@@ -2,6 +2,7 @@ package gr.james.evaluate.algorithms;
 
 import gr.james.evaluate.ds.RankedList;
 import gr.james.evaluate.ds.Result;
+import gr.james.evaluate.ds.SingleRankedList;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -93,6 +94,6 @@ public final class Kendall {
         for (Set<T> s : x) {
             flattened.addAll(s);
         }
-        return kendall(x, RankedList.fromSingletonRanks(flattened));
+        return kendall(x, SingleRankedList.fromRanks(flattened).torankedList());
     }
 }

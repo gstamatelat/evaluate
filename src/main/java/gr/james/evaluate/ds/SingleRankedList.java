@@ -1,5 +1,6 @@
 package gr.james.evaluate.ds;
 
+import gr.james.evaluate.Helper;
 import gr.james.evaluate.io.TokenReader;
 
 import java.io.IOException;
@@ -80,6 +81,17 @@ public final class SingleRankedList<T> implements Iterable<T> {
             }
         }
         return fromRanks(ranks);
+    }
+
+    /**
+     * Returns a {@link RankedList} from this data structure.
+     * <p>
+     * This method runs in linear time.
+     *
+     * @return a {@link RankedList} from this data structure
+     */
+    public RankedList<T> torankedList() {
+        return RankedList.fromRanks(Helper.flatten(ranks));
     }
 
     /**
