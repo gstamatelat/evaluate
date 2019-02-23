@@ -17,11 +17,11 @@ import java.util.stream.Collectors;
  *
  * @param <T> the type of elements
  */
-public final class SingleRankedList<T> implements Iterable<T> {
+public final class RankedList<T> implements Iterable<T> {
     private final Map<T, Integer> indices;
     private final List<T> ranks;
 
-    private SingleRankedList(List<T> ranks) {
+    private RankedList(List<T> ranks) {
         this.indices = new HashMap<>();
         this.ranks = new ArrayList<>();
         for (int i = 0; i < ranks.size(); i++) {
@@ -36,34 +36,34 @@ public final class SingleRankedList<T> implements Iterable<T> {
     }
 
     /**
-     * Returns a new {@link SingleRankedList} from the given ranked list.
+     * Returns a new {@link RankedList} from the given ranked list.
      * <p>
      * This method runs in linear time.
      *
      * @param ranks an ordered list of ranked elements
      * @param <T>   the type of elements
-     * @return a new {@link SingleRankedList} from {@code ranks}
+     * @return a new {@link RankedList} from {@code ranks}
      * @throws NullPointerException     if {@code ranks} is {@code null}
      * @throws NullPointerException     if any element in {@code ranks} is {@code null}
      * @throws IllegalArgumentException if {@code ranks} contains duplicate elements
      */
-    public static <T> SingleRankedList<T> fromRanks(List<T> ranks) {
-        return new SingleRankedList<>(ranks);
+    public static <T> RankedList<T> fromRanks(List<T> ranks) {
+        return new RankedList<>(ranks);
     }
 
     /**
-     * Returns a new {@link SingleRankedList} from the given {@link Path}.
+     * Returns a new {@link RankedList} from the given {@link Path}.
      * <p>
      * This method runs in linear time.
      *
      * @param p the {@link Path} of the file to read from
-     * @return a new {@link SingleRankedList} from {@code p}
+     * @return a new {@link RankedList} from {@code p}
      * @throws NullPointerException     if {@code p} is {@code null}
      * @throws IOException              if some I/O exception occurs while reading the file
      * @throws IllegalArgumentException if {@code p} contains duplicate elements
      * @throws IllegalArgumentException if {@code p} is not of valid format
      */
-    public static SingleRankedList<String> fromPath(Path p) throws IOException {
+    public static RankedList<String> fromPath(Path p) throws IOException {
         final List<String> ranks = new ArrayList<>();
         try (final TokenReader reader = new TokenReader(p)) {
             reader.next();
@@ -158,7 +158,7 @@ public final class SingleRankedList<T> implements Iterable<T> {
      */
     @Override
     public String toString() {
-        return String.format("SingleRankedList[%d] {%n%s%n}", elementsCount(),
+        return String.format("RankedList[%d] {%n%s%n}", elementsCount(),
                 this.ranks.stream().map(ts -> String.format("  %s", ts))
                         .collect(Collectors.joining(System.lineSeparator()))
         );

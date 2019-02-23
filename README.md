@@ -10,14 +10,6 @@ Each file can be one of two formats: rank list or value map. The script will
 determine the format based on the hash value in the first line of the file,
 which may be **ranks** or **values** respectively.
 
-### Tied Rank List
-
-```
-# tie-ranks
-dog
-bear cat
-```
-
 ### Value Map
 
 ```
@@ -27,13 +19,21 @@ dog 0.1
 bear 0.3
 ```
 
-### Single Rank List
+### Rank List
 
 ```
-# single-ranks
+# ranks
 dog
 bear
 cat
+```
+
+### Tied Rank List
+
+```
+# tie-ranks
+dog
+bear cat
 ```
 
 ### Partition

@@ -20,7 +20,7 @@ public class Tests {
         final List<String> files = Arrays.asList(
                 "/simple-tied-ranks.txt",
                 "/simple-values.txt",
-                "/simple-single-ranks.txt",
+                "/simple-ranks.txt",
                 "/simple-partition.txt"
         );
         for (String f : files) {

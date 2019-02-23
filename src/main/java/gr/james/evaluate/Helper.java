@@ -1,7 +1,7 @@
 package gr.james.evaluate;
 
 import gr.james.evaluate.algorithms.Kendall;
-import gr.james.evaluate.ds.SingleRankedList;
+import gr.james.evaluate.ds.RankedList;
 import gr.james.evaluate.ds.TiedRankedList;
 
 import java.io.BufferedReader;
@@ -88,6 +88,6 @@ public final class Helper {
         for (Set<T> s : x) {
             flattened.addAll(s);
         }
-        return Kendall.kendall(x, SingleRankedList.fromRanks(flattened).torankedList());
+        return Kendall.kendall(x, RankedList.fromRanks(flattened).torankedList());
     }
 }
