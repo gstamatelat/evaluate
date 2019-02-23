@@ -53,12 +53,12 @@ public class Main {
         // Calculate max name for printing formats
         final int maximumLength = fileList.stream()
                 .mapToInt(p -> p.getFileName().toString().length()).max().orElse(0);
-        final String format = String.format("%%-%ds %%8.4f %%8.4f %%8.4f %%8.4f %%8.4f %%8.4f %%8.4f %%n", maximumLength);
-        final String headerFormat = String.format("%%-%ds %%8s %%8s %%8s %%8s %%8s %%8s %%8s %%n", maximumLength);
+        final String format = String.format("%%-%ds %%8.4f %%8.4f %%8.4f %%8.4f %%8.4f %%8.4f %%8.4f %%8.4f %%n", maximumLength);
+        final String headerFormat = String.format("%%-%ds %%8s %%8s %%8s %%8s %%8s %%8s %%8s %%8s %%n", maximumLength);
 
         // Iterate other files and print correlations
         // TODO: Print hyphen instead of null
-        System.out.printf(headerFormat, "Name", "Kendall", "Pearson", "Cosine", "Jaccard", "MI", "SMC", "F1");
+        System.out.printf(headerFormat, "Name", "Kendall", "Pearson", "Cosine", "Jaccard", "Overlap", "MI", "SMC", "F1");
         for (Path p : fileList) {
             final Result<String> r = Result.fromPath(p);
             System.out.printf(format,
@@ -67,6 +67,7 @@ public class Main {
                     Pearson.pearson(truth, r),
                     Cosine.cosine(truth, r),
                     Jaccard.jaccard(truth, r),
+                    Overlap.overlap(truth, r),
                     MI.mi(truth, r),
                     SMC.smc(truth, r),
                     Sorensen.sorensen(truth, r)
