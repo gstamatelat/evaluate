@@ -2,12 +2,8 @@ package gr.james.evaluate.algorithms;
 
 import gr.james.evaluate.ds.RankedList;
 import gr.james.evaluate.ds.Result;
-import gr.james.evaluate.ds.SingleRankedList;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Kendall tau-b correlation coefficient implementation.
@@ -89,22 +85,5 @@ public final class Kendall {
         }
 
         return numerator / (Math.sqrt(n - n1) * Math.sqrt(n - n2));
-    }
-
-    /**
-     * Returns the maximum value of Kendall tau-b correlation of a tied ranked list with any other ranked list given
-     * the assertion that the latter does not contain any ties.
-     *
-     * @param x   the tied ranked list
-     * @param <T> the type of elements
-     * @return the maximum value of Kendall tau-b correlation of {@code x} with any other ranked list without ties
-     * @throws NullPointerException if {@code x} is {@code null}
-     */
-    public static <T> double maxKendall(RankedList<T> x) {
-        final List<T> flattened = new ArrayList<>();
-        for (Set<T> s : x) {
-            flattened.addAll(s);
-        }
-        return kendall(x, SingleRankedList.fromRanks(flattened).torankedList());
     }
 }
