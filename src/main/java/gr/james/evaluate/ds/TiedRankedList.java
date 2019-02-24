@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
  * Immutable data structure that represents a ranked list of unique elements. The ranked list can contain ties.
  * <p>
- * The elements contained in this data structure must me immutable or effectively immutable for it to work.
+ * The elements contained in this data structure must be immutable or effectively immutable for it to work.
  * <p>
  * All of the class methods run in constant time unless otherwise stated.
  *

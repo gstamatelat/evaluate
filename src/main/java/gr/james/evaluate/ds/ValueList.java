@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * Immutable data structure that represents a map of unique elements into number values. The values cannot be
  * {@link Double#NaN}, {@link Double#POSITIVE_INFINITY} or {@link Double#NEGATIVE_INFINITY}.
  * <p>
- * The elements contained in this data structure must me immutable or effectively immutable for it to work.
+ * The elements contained in this data structure must be immutable or effectively immutable for it to work.
  * <p>
  * All of the class methods run in constant time unless otherwise stated.
  *
