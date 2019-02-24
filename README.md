@@ -21,6 +21,8 @@ dog 0.1
 bear 0.3
 ```
 
+A map of elements to decimal values.
+
 ### Rank List
 
 ```
@@ -30,6 +32,8 @@ bear
 cat
 ```
 
+An ordered list of ranked elements.
+
 ### Tied Rank List
 
 ```
@@ -38,6 +42,8 @@ dog
 bear cat
 ```
 
+An ordered list of ranked elements with possible ties.
+
 ### Partition
 
 ```
@@ -45,3 +51,5 @@ bear cat
 dog
 bear cat
 ```
+
+A partition of elements in groups.
