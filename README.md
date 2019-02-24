@@ -1,5 +1,7 @@
 # Evaluate
 
+A Java 8 utility to evaluate various types of data.
+
 ## Usage
 
 ```
