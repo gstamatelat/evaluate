@@ -11,6 +11,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+/**
+ * Utility static methods.
+ */
 public final class Helper {
     /**
      * Definition of whitespace, equal to the regex {@code \\s+}.
