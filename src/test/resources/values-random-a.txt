@@ -1,0 +1,4 @@
+# values
+cat 0.9
+dog 0.2
+bear 0.4

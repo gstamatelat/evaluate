@@ -1,6 +1,8 @@
 package gr.james.evaluate;
 
+import gr.james.evaluate.algorithms.Pearson;
 import gr.james.evaluate.ds.Result;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -28,5 +30,20 @@ public class Tests {
             Result<String> resultRanks = Result.fromPath(Paths.get(url.toURI()));
             System.out.println(resultRanks);
         }
+    }
+
+    /**
+     * Pearson coefficient must be commutative. This test applies values lists.
+     */
+    @Test
+    public void pearsonValuesCommutativity() throws URISyntaxException, IOException {
+        final Result<String> valuesRandomA =
+                Result.fromPath(Paths.get(Tests.class.getResource("/values-random-a.txt").toURI()));
+        final Result<String> valuesRandomB =
+                Result.fromPath(Paths.get(Tests.class.getResource("/values-random-b.txt").toURI()));
+        Assert.assertEquals(
+                Pearson.pearson(valuesRandomA, valuesRandomB),
+                Pearson.pearson(valuesRandomB, valuesRandomA)
+        );
     }
 }
