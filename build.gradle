@@ -9,7 +9,7 @@ mainClassName = 'gr.james.evaluate.Main'
 sourceCompatibility = 1.8
 
 group = 'gr.james'
-version = 0.1
+version = 0.2
 
 repositories {
     jcenter()
