@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
@@ -45,5 +46,20 @@ public class Tests {
                 Pearson.pearson(valuesRandomA, valuesRandomB),
                 Pearson.pearson(valuesRandomB, valuesRandomA)
         );
+    }
+
+    /**
+     * All classes inside the algorithms package must be final and have a single private constructor.
+     */
+    @Test
+    public void algorithmsFinalAndPrivateConstructor() throws IOException, ClassNotFoundException {
+        final Class[] classes = TestsHelper.getClasses("gr.james.evaluate.algorithms");
+        Assert.assertNotEquals(0, classes.length);
+        for (Class c : classes) {
+            Assert.assertTrue(Modifier.isFinal(c.getModifiers()));
+            Assert.assertEquals(1, c.getDeclaredConstructors().length);
+            Assert.assertTrue(Modifier.isPrivate(c.getDeclaredConstructors()[0].getModifiers()));
+        }
+        System.out.println();
     }
 }
