@@ -75,10 +75,10 @@ public final class Pearson {
         double varB = 0;
         for (T t : a.elements()) {
             varA += Math.pow(a.get(t) - averageA, 2);
-            varB += Math.pow(b.get(t) - averageA, 2);
+            varB += Math.pow(b.get(t) - averageB, 2);
         }
         varA /= a.elements().size();
-        varB /= a.elements().size();
+        varB /= b.elements().size();
         varA = Math.sqrt(varA);
         varB = Math.sqrt(varB);
 
