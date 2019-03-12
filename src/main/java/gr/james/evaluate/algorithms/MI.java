@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Normalized Mutual Information implementation.
  */
-public class MI {
+public final class MI {
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>
