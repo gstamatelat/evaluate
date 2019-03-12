@@ -10,6 +10,9 @@ import java.util.List;
  * Normalized Mutual Information implementation.
  */
 public final class MI {
+    private MI() {
+    }
+
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>

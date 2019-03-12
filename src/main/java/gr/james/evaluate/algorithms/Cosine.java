@@ -11,6 +11,9 @@ import java.util.List;
  * Cosine similarity implementation.
  */
 public final class Cosine {
+    private Cosine() {
+    }
+
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>

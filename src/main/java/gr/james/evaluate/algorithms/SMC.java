@@ -10,6 +10,9 @@ import java.util.List;
  * Simple Matching coefficient implementation.
  */
 public final class SMC {
+    private SMC() {
+    }
+
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>

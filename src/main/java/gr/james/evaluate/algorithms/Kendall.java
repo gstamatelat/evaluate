@@ -9,6 +9,9 @@ import java.util.Collection;
  * Kendall tau-b correlation coefficient implementation.
  */
 public final class Kendall {
+    private Kendall() {
+    }
+
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>

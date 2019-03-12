@@ -10,6 +10,9 @@ import java.util.List;
  * Jaccard index implementation.
  */
 public final class Jaccard {
+    private Jaccard() {
+    }
+
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>

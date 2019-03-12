@@ -12,6 +12,9 @@ import java.util.Set;
  * Pearson correlation coefficient implementation.
  */
 public final class Pearson {
+    private Pearson() {
+    }
+
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>

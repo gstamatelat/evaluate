@@ -7,6 +7,9 @@ import gr.james.evaluate.ds.Result;
  * Sorensen-Dice coefficient implementation.
  */
 public final class Sorensen {
+    private Sorensen() {
+    }
+
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>

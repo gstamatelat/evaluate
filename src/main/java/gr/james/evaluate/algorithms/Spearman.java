@@ -11,6 +11,9 @@ import java.util.Map;
  * Spearman's rank correlation coefficient implementation.
  */
 public final class Spearman {
+    private Spearman() {
+    }
+
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>

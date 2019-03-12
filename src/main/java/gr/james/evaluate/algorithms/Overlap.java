@@ -10,6 +10,9 @@ import java.util.List;
  * Overlap coefficient implementation.
  */
 public final class Overlap {
+    private Overlap() {
+    }
+
     /**
      * Convenience method that automatically invokes one of these methods based on the type of the arguments:
      * <ul>
