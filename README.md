@@ -8,9 +8,10 @@ A Java 8 utility to evaluate various types of data.
 ./evaluate truth.txt data1.txt data2.txt ...
 ```
 
-Each file can be one of two formats: rank list or value map. The script will
-determine the format based on the hash value in the first line of the file,
-which may be **ranks** or **values** respectively.
+The script will evaluate the `data*.txt` inputs against the `truth.txt` file
+using any compatible methods based on the format of the files. The format of the
+files is automatically determined based on the hash value in the first line of
+each file.
 
 ### Value Map
 
