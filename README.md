@@ -11,7 +11,7 @@ A Java 8 utility to evaluate various types of data.
 The script will evaluate the `data*.txt` inputs against the `truth.txt` file
 using any compatible methods based on the format of the files. The format of the
 files is automatically determined based on the hash value in the first line of
-each file.
+each file. Files need to be UTF-8 encoded without BOM.
 
 ### Value Map
 
